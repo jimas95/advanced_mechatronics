@@ -1,14 +1,14 @@
 import my_functions
-from my_functions import get_data
-from my_functions import plot_data
+from my_functions import get_data,fft,subplot
+from my_functions import plot_data,plot_data2
 
 
 def low_pass(time,data):
-    buffer_size = 2000
+    buffer_size = 300
     buffer = []
     new_data = []
     for i in range(buffer_size):
-        buffer.append(0)
+        buffer.append(data[0])
     
     for val in data:
         buffer.append(val)
@@ -20,12 +20,14 @@ def low_pass(time,data):
     return new_data
 
 def main():
-
+    title = " makis"
     file_name = "sigA.csv" 
     time,data = get_data(file_name)
+    dt = len(time)/time[-1]
     filter_data = low_pass(time,data)
-    plot_data(time,filter_data)
-    plot_data(time,data)
+    freq,fft_signal = fft(time, data, dt)
+    freqF,fft_signalF = fft(time, filter_data, dt)
+    subplot(time,data,filter_data,freq,fft_signal,freqF,fft_signalF,title)
     return 0
 
 

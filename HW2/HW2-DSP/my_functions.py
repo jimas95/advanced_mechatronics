@@ -1,6 +1,44 @@
 import csv
 import matplotlib.pyplot as plt # for plotting
-import numpy as np # for sine function
+import numpy as np 
+
+
+def fft(t, data, dt):
+    # dt = 1.0/10000.0 # 10kHz
+    # t = np.arange(0.0, 1.0, dt) # 10s
+    # a constant plus 100Hz and 1000Hz
+    # s = 4.0 * np.sin(2 * np.pi * 100 * t) + 0.25 * np.sin(2 * np.pi * 1000 * t) + 25
+
+    Fs = 10000 # sample rate
+    Ts = 1.0/Fs; # sampling interval
+    ts = np.arange(0,t[-1],Ts) # time vector
+    y = data # the data to make the fft from
+    n = len(y) # length of the signal
+    k = np.arange(n)
+    T = n/Fs
+    frq = k/T # two sides frequency range
+    frq = frq[range(int(n/2))] # one side frequency range
+    Y = np.fft.fft(y)/n # fft computing and normalization
+    Y = Y[range(int(n/2))]
+    return frq,abs(Y)
+
+
+def subplot(time,data,dataF,freq,fft_signal,freqF,fft_signalF,title):
+    fig, (ax1, ax2) = plt.subplots(2, 1)
+    ax1.set_title(title)
+    ax1.plot(time,data,'black')
+    ax1.plot(time,dataF,'r')
+    ax1.set_xlabel('Time')
+    ax1.set_ylabel('Amplitude')
+    ax2.loglog(freq,fft_signal,'black') # plotting the fft
+    ax2.loglog(freqF,fft_signalF,'r') # plotting the fft filtered
+    ax2.set_xlabel('Freq (Hz)')
+    ax2.set_ylabel('|Y(freq)|')
+    plt.show()
+
+
+
+
 
 def info(time,data):
     lengthT = len(time)
@@ -37,3 +75,10 @@ def plot_data(time,data):
     plt.title('Signal vs Time')
     plt.show()
 
+def plot_data2(time,data1,data2):
+    plt.plot(time,data1,'b-*')
+    plt.plot(time,data2,'r-*')
+    plt.xlabel('Time [s]')
+    plt.ylabel('Signal')
+    plt.title('Signal vs Time')
+    plt.show()
