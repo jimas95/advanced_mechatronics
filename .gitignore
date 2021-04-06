@@ -13,6 +13,8 @@
 *.map
 *.exp
 
+__pycache__
+
 # Precompiled Headers
 *.gch
 *.pch
