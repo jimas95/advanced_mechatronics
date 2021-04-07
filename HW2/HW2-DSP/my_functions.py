@@ -46,6 +46,7 @@ def info(time,data):
     print("Start Time --> ",time[0])
     print("Total Time --> ",time[-1])
     print("Time    dt --> ",time[1]-time[0])
+    print("sample fre --> ",1/(time[1]-time[0]))
     print("Time   fre --> ",len(time)/time[-1])
 
 
