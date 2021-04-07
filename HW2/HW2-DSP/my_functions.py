@@ -4,11 +4,6 @@ import numpy as np
 
 
 def fft(t, data, dt):
-    # dt = 1.0/10000.0 # 10kHz
-    # t = np.arange(0.0, 1.0, dt) # 10s
-    # a constant plus 100Hz and 1000Hz
-    # s = 4.0 * np.sin(2 * np.pi * 100 * t) + 0.25 * np.sin(2 * np.pi * 1000 * t) + 25
-
     Fs = 10000 # sample rate
     Ts = 1.0/Fs; # sampling interval
     ts = np.arange(0,t[-1],Ts) # time vector
@@ -51,6 +46,8 @@ def info(time,data):
     print("Start Time --> ",time[0])
     print("Total Time --> ",time[-1])
     print("Time    dt --> ",time[1]-time[0])
+    print("Time   fre --> ",len(time)/time[-1])
+
 
 def get_data(file_name):
     t = [] # column 0
