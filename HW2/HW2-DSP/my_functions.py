@@ -4,7 +4,7 @@ import numpy as np
 
 
 def fft(t, data, dt):
-    Fs = 10000 # sample rate
+    Fs = 1/(t[1]-t[0]) # sample rate
     Ts = 1.0/Fs; # sampling interval
     ts = np.arange(0,t[-1],Ts) # time vector
     y = data # the data to make the fft from
