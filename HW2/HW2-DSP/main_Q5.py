@@ -2,7 +2,7 @@ import my_functions
 from my_functions import get_data,fft,subplot
 from my_functions import plot_data,plot_data2
 
-buffer_size = 250
+buffer_size = 20
 file_name = "sigD.csv" 
 
 

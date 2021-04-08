@@ -3,8 +3,8 @@ from my_functions import get_data,fft,subplot
 from my_functions import plot_data,plot_data2
 import filter_coefficients
 buffer_size = 250
-file_name = "sigA.csv" 
-A = 0.005
+file_name = "sigD.csv" 
+A = 0.1
 B = 1.0 - A
 
 def low_pass(time,data):
