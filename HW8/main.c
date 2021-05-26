@@ -81,35 +81,25 @@ int main(){
     setPin(write_addr, IODIRA, output); // Make all the A pins output so IODIRA = 0x00
     setPin(write_addr, IODIRB, input); // Make all B pins input, so IODIRB = 0xFF
     
-    // Turn yellow LED on 
-    //setPin(write_addr, OLATA, High_GPA7);
-    while (1) {
-        // use _CP0_SET_COUNT(0) and _CP0_GET_COUNT() to test the PIC timing
-        // remember the core timer runs at half the sysclk
 
-        // HEART BEAT FOR DEBUGGING
-        LATAbits.LATA4 = 1; // led high
-        delay(); // delay 0.5 seconds
-        LATAbits.LATA4 = 0; // led low
-        delay(); // delay 0.5 seconds
-        
-        // Read GPBO Pin (HIGH--> button not push; LOW--> button push)
+
+    while (1) {
+
+        LATAbits.LATA4 = 1; 
+        delay(); 
+        LATAbits.LATA4 = 0; 
+        delay();
         received_val = readPin(write_addr, read_addr, GPIOB);
         
-        if(received_val == 0){ 
-            // if button is pressed turn LED on pin GPA7 on
-            setPin(write_addr, OLATA, High_GPA7); // yellow LED ON
-        }
-        else{
-            setPin(write_addr, OLATA, Low_GPA7); // // yellow LED OFF when button is up
-        }
+        if(received_val == 0){  setPin(write_addr, OLATA, High_GPA7); }
+        else{ setPin(write_addr, OLATA, Low_GPA7); }
     }
 }
 
 void delay(void){
     _CP0_SET_COUNT(0);
     while(_CP0_GET_COUNT() < 12000000){ 
-    ; // delay for # core ticks, 0.5 seconds
+    ; 
     }
 }
 
