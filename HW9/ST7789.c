@@ -109,9 +109,29 @@ void LCD_clearScreen(unsigned short color) {
 }
 
 void drawChar(unsigned short x, unsigned short y, unsigned short color, unsigned char letter){
+    int i,j;
+
+    for (i=0; i<5; i++){
+      for(j=0; j<8; j++){
+        if(ASCII[letter[i]>>j & 0b1 == 0b1){
+          LCD_drawPixel(x+i, y+j, color);
+        }
+        else{
+          LCD_drawPixel(x+i, y+j, BLACK);
+        }
+      }
+    }
+
+
 }
 
 void drawString(unsigned short x, unsigned short y, unsigned short color, char *m){
+  int i;
+  int msg_size = strlen(m);
+  for(i=0; i<msg_size; i++){
+    drawChar(x+i*6,y,color,m[i]-0x20);
+  }
+
 }
 
 void drawBar(unsigned short x, unsigned short y, unsigned short index, unsigned short length){
