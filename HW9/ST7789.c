@@ -12,6 +12,7 @@
 // BLK - NC
 
 #include <xc.h>
+#include <string.h>
 #include "ST7789.h"
 #include "spi.h"
 #include "font.h"
@@ -107,7 +108,11 @@ void LCD_clearScreen(unsigned short color) {
 	}
 }
 
-// drawChar function
+void drawChar(unsigned short x, unsigned short y, unsigned short color, unsigned char letter){
+}
 
-// drawString function
+void drawString(unsigned short x, unsigned short y, unsigned short color, char *m){
+}
 
+void drawBar(unsigned short x, unsigned short y, unsigned short index, unsigned short length){
+}
