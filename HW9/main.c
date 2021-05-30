@@ -92,12 +92,18 @@ int main() {
     LCD_clearScreen(0x0000);
     
     char m[100];
-    char m1[100];
     int i=0;
     while(1){
-        _CP0_SET_COUNT(0); //set sys clk to 0
-        sprintf(m, "Helloooo123");
-        drawString(28, 32, WHITE, m);
+        for (i=0; i<100; i++){
+            _CP0_SET_COUNT(0); //set sys clk to 0
+            sprintf(m, "Hello, Nick %d!", i);
+            drawString(28, 32, WHITE, m);
+            int delay = _CP0_GET_COUNT(); 
+            float fps = 24000000/delay; //get fps 
+            sprintf(m, "FPS = %.2f", fps);
+            drawString(28, 120, WHITE, m); 
+            drawBar(28, 70, i, 100);
+        }
     }
 }
 

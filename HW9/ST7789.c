@@ -135,4 +135,24 @@ void drawString(unsigned short x, unsigned short y, unsigned short color, char *
 }
 
 void drawBar(unsigned short x, unsigned short y, unsigned short index, unsigned short length){
+
+
+  int i,j;
+
+
+  for (i=0; i<5; i++){
+    for(j=0; j<8; j++){
+
+      if(index>i){
+        LCD_drawPixel(x+i,y+j,BLUE);
+      }
+      else{
+        LCD_drawPixel(x+i,y+i,WHITE);
+      }
+
+
+    }
+  }
+
+
 }
